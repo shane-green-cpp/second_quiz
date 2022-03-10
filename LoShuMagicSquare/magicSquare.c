@@ -11,7 +11,7 @@ int magicSquatTest(int magicSquare[3][3]) {
     int row[3] = {0,0,0};
     int col[3] = {0,0,0};
     int diagonal[2] = {0,0};
-    int testResult;
+    int testResult = 0;
 
     //makes sure that array contains numbers 1 - 9
     //sets the row and col arrays
@@ -84,12 +84,27 @@ void randoSquare(int magicSquare[3][3]) {
 
 //testing
 int main () {
+    char *result;
     int magicSquare[3][3] = {{4,9,2},{3,5,7},{8,1,6}};
-    printf("test results: %d\n", magicSquatTest(magicSquare));
+    printf("testing confirmed magic square...\n");
+    for (int i = 0; i < 3; i++) {
+        printf("[ ");
+        for (int j = 0; j < 3; j++) {
+            printf("%d ", magicSquare[i][j]);
+        }
+        printf("]\n");
+    }
+    if (magicSquatTest(magicSquare)) {
+        result = "TRUE";
+    } else {
+        result = "FALSE";
+    }
+    printf("test results: %s\n\n", result);
 
     int count = 0;
     int test = 0;
     srand(time(0));
+    printf("testing randomly generated squares...\n");
     while (test == 0) {
         randoSquare(magicSquare);
         test = magicSquatTest(magicSquare);
